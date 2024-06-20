@@ -1,1 +1,3 @@
 self-service/
+__pycache__/
+*.log

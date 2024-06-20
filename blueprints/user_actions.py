@@ -16,8 +16,8 @@ def log_action(action):
         file.write(f"{action}\n")
 
 def send_task_to_master(task):
-    headers = {'Authorization': f'Bearer {os.environ.get('MASTER_BEARER_TOKEN')}'}
-    response = requests.post(f"{os.environ.get('MASTER_URL')}/tasks/process", json=task, headers=headers)
+    headers = {'Authorization': 'Bearer '+{os.environ.get('MASTER_BEARER_TOKEN')}}
+    response = request.post(f"{os.environ.get('MASTER_URL')}/tasks/process", json=task, headers=headers)
     if response.status_code == 200:
         log_action(f"Task sent to master: {task}")
     else:
