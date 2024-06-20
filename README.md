@@ -791,8 +791,7 @@ sudo supervisorctl update
 4. **Optionally, use Supervisor to manage the Gunicorn processes for better control and monitoring.**
 
 This setup allows you to run the Flask application in a production environment, handling both the master and worker processes efficiently.
-
-Sure! I will generate the full code for this setup and provide you with a link to download it. Here is a step-by-step summary of the code and structure that will be included:
+Here is a step-by-step summary of the code and structure that will be included:
 
 ### Directory Structure
 ```
@@ -1462,9 +1461,9 @@ for filepath, content in files.items():
 shutil.make_archive("/mnt/data/selfservice", 'zip', base_path)
 ```
 
-The code to generate the zip file and provide the download link is being executed. Please wait a moment while I generate the file.
+The code to generate the zip file and provide the download link is being executed.
 
-It seems like I can’t do more advanced data analysis right now. Please try again later. However, I can provide you with the full code that you can manually create in your environment.
+I can’t do more advanced data analysis right now. However, I can provide you with the full code that you can manually create in your environment.
 
 Here's the complete structure and content for the project:
 
