@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>SSH Commands</h2>
+<form action="{{ url_for('ssh_commands.execute') }}" method="post">
+    <label for="command">Command:</label>
+    <input type="text" name="command" id="command">
+    <button type="submit">Execute</button>
+</form>
+<div id="output"></div>
+<script>
+    document.querySelector('form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        fetch('{{ url_for('ssh_commands.execute') }}', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ command: document.getElementById('command').value })
+        }).then(response => response.json()).then(data => {
+            document.getElementById('output').textContent = data.output;
+        });
+    });
+</script>
+{% endblock %}

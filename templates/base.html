@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Self-Service Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Self-Service Dashboard</h1>
+        <nav>
+            <a href="{{ url_for('index') }}">Home</a>
+            <a href="{{ url_for('user_actions.history') }}">User Actions</a>
+            <a href="{{ url_for('file_management.index') }}">File Management</a>
+            <a href="{{ url_for('worker_health.index') }}">Worker Health</a>
+            <a href="{{ url_for('ssh_commands.index') }}">SSH Commands</a>
+            <a href="{{ url_for('api_calls.index') }}">API Calls</a>
+        </nav>
+    </header>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    <footer>
+        <p>&copy; 2024 Self-Service Dashboard</p>
+    </footer>
+</body>
+</html>

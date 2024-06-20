@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="cards">
+    <div class="card">
+        <a href="{{ url_for('user_actions.history') }}">User Actions</a>
+    </div>
+    <div class="card">
+        <a href="{{ url_for('file_management.index') }}">File Management</a>
+    </div>
+    <div class="card">
+        <a href="{{ url_for('worker_health.index') }}">Worker Health</a>
+    </div>
+    <div class="card">
+        <a href="{{ url_for('ssh_commands.index') }}">SSH Commands</a>
+    </div>
+    <div class="card">
+        <a href="{{ url_for('api_calls.index') }}">API Calls</a>
+    </div>
+</div>
+{% endblock %}

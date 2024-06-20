@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>API Calls</h2>
+<form action="{{ url_for('api_calls.execute') }}" method="post">
+    <label for="api_url">API URL:</label>
+    <input type="text" name="api_url" id="api_url">
+    <button type="submit">Call API</button>
+</form>
+<div id="output"></div>
+<script>
+    document.querySelector('form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        fetch('{{ url_for('api_calls.execute') }}', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ api_url: document.getElementById('api_url').value })
+        }).then(response => response.json()).then(data => {
+            document.getElementById('output').textContent = JSON.stringify(data);
+        });
+    });
+</script>
+{% endblock %}
