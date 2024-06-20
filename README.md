@@ -181,6 +181,31 @@ sudo supervisorctl update
 This setup allows you to run the Flask application in a production environment, handling both the master and worker processes efficiently.
 I can’t do more advanced data analysis right now. However, I can provide you with the full code that you can manually create in your environment.
 
+To gracefully stop the Flask server and any running processes associated with it, you can follow these steps:
+
+### 1. Using Keyboard Interrupt
+When running the Flask application via the command line, you can stop the server by pressing `Ctrl+C`. This sends a SIGINT (interrupt signal) to the process, which will shut down the server.
+
+### 2. Stopping the Server Programmatically
+You can implement an endpoint to shutdown the server programmatically. This can be useful for automated testing or other use cases where you need to control the server lifecycle from within the application.
+
+### 3. Sending Shutdown Request
+To shut down the server, you can use a tool like `curl`, Postman, or any HTTP client to send a POST request to the `/shutdown` endpoint.
+
+For the master server:
+```bash
+curl -X POST http://localhost:5000/shutdown
+```
+
+For the worker server:
+```bash
+curl -X POST http://localhost:5001/shutdown
+```
+
+### Note:
+- These shutdown endpoints should be secured and used with caution, especially in a production environment. Consider adding authentication and authorization checks before allowing the shutdown request to be processed.
+- In production, you typically manage the server lifecycle using process managers like `systemd`, `supervisord`, or container orchestration tools like Kubernetes. These tools provide more robust ways to start, stop, and monitor your services.
+
 Here's the complete structure and content for the project:
 
 ### Directory Structure
