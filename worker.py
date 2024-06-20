@@ -34,5 +34,13 @@ def process_task():
 def health():
     return jsonify({"status": "healthy"})
 
+@app.route('/shutdown', methods=['POST'])
+def shutdown():
+    func = request.environ.get('werkzeug.server.shutdown')
+    if func is None:
+        raise RuntimeError('Not running with the Werkzeug Server')
+    func()
+    return 'Worker shutting down...'
+
 def create_worker_app():
     return app

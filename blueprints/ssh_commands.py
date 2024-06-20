@@ -10,9 +10,14 @@ def index():
 
 @ssh_commands_bp.route('/execute', methods=['POST'])
 def execute():
-    command = request.form['command']
+    data = request.json
+    if 'command' not in data:
+        return jsonify({"status": "error", "error": "No command provided"}), 400
+    
+    command = data['command']
     result = subprocess.run(command, shell=True, capture_output=True, text=True)
     log_action(f"Executed SSH command: {command}")
+
     return jsonify({"status": "success", "output": result.stdout, "error": result.stderr})
 
 def log_action(action):

@@ -1,14 +1,33 @@
 import os
 from multiprocessing import Process
+from flask import Flask, request
 from app import create_app
 from worker import create_worker_app
 
 def run_master():
     app = create_app()
+
+    @app.route('/shutdown', methods=['POST'])
+    def shutdown():
+        func = request.environ.get('werkzeug.server.shutdown')
+        if func is None:
+            raise RuntimeError('Not running with the Werkzeug Server')
+        func()
+        return 'Server shutting down...'
+
     app.run(port=5000)
 
 def run_worker():
     app = create_worker_app()
+
+    @app.route('/shutdown', methods=['POST'])
+    def shutdown():
+        func = request.environ.get('werkzeug.server.shutdown')
+        if func is None:
+            raise RuntimeError('Not running with the Werkzeug Server')
+        func()
+        return 'Server shutting down...'
+
     app.run(port=5001)
 
 if __name__ == '__main__':
